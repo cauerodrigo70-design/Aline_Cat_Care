@@ -5,7 +5,7 @@ import { Services } from '@/components/Services';
 import { AboutAline } from '@/components/AboutAline';
 import { WhatsAppButton } from '@/components/WhatsAppButton';
 
-const WHATSAPP_NUMBER = '5547970231221';
+const WHATSAPP_NUMBER = '554797023121';
 const WHATSAPP_MESSAGE = encodeURIComponent('Oi Aline! Vi seu site e queria conversar sobre cuidar do meu gato.');
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
 
