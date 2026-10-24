@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root { color: #3b2017; background: #fffaf3; font-family: 'DM Sans', sans-serif; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  h1, h2, h3, .font-display { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; }
+  ::selection { background: #f2b8ae; color: #3b2017; }
+}
+
+@layer components {
+  .eyebrow { @apply text-xs font-bold uppercase tracking-[0.22em]; }
+  .nav-link { @apply relative transition-colors hover:text-[#b85f57]; }
+  .nav-link::after {
+    content: ''; position: absolute; left: 0; bottom: -4px; height: 1.5px; width: 0;
+    background: #b85f57; transition: width .3s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+}
+
+/* ===== Hero background: organic, warm, not a grid ===== */
+.hero-canvas {
+  background-color: #fffaf3;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 80% 15%, rgba(242,184,174,.28), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 10% 80%, rgba(232,189,112,.16), transparent 65%);
+}
+.hero-photo { object-position: center; }
+
+/* ===== Reveal on scroll ===== */
+.reveal { animation: rise-in .8s cubic-bezier(.2,.7,.2,1) both; }
+.reveal-delay { animation-delay: .15s; }
+.reveal-delay-2 { animation-delay: .3s; }
+[data-reveal] { animation: rise-in .8s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ===== Floating blobs (hero) ===== */
+@keyframes float-slow {
+  0%, 100% { transform: translate(0,0) rotate(0deg); }
+  33% { transform: translate(14px,-22px) rotate(8deg); }
+  66% { transform: translate(-10px,12px) rotate(-6deg); }
+}
+@keyframes float-medium {
+  0%, 100% { transform: translate(0,0) rotate(0deg); }
+  50% { transform: translate(-18px,16px) rotate(-10deg); }
+}
+.blob-a { animation: float-slow 11s ease-in-out infinite; }
+.blob-b { animation: float-medium 8s ease-in-out infinite; }
+
+/* ===== Breathing emblems ===== */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+.breathe { animation: breathe 4.5s ease-in-out infinite; }
+
+/* ===== Drifting paw prints ===== */
+@keyframes paw-drift {
+  0% { transform: translateY(0) rotate(var(--r, 0deg)); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-120px) rotate(calc(var(--r, 0deg) + 20deg)); opacity: 0; }
+}
+
+/* ===== Slow rotation for decorative ring ===== */
+@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 40s linear infinite; }
+.spin-slow-rev { animation: spin-slow 55s linear infinite reverse; }
+
+/* ===== Counter rotation for keeping content upright inside a spinning ring ===== */
+@keyframes spin-slow-rev-keep { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+.spin-keep { animation: spin-slow-rev-keep 40s linear infinite; }
+
+/* ===== Gallery image gentle parallax ===== */
+@keyframes sway {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.sway { animation: sway 6s ease-in-out infinite; }
+
+/* ===== Button shine ===== */
+.btn-shine { position: relative; overflow: hidden; }
+.btn-shine::after {
+  content: ''; position: absolute; top: 0; left: -120%; width: 60%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.35), transparent);
+  transform: skewX(-20deg); transition: left .6s ease;
+}
+.btn-shine:hover::after { left: 140%; }
+
+/* ===== Section divider with paw ===== */
+.paw-divider { display: flex; align-items: center; gap: 14px; }
+.paw-divider::before, .paw-divider::after {
+  content: ''; flex: 1; height: 1px; background: currentColor; opacity: .15;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
