@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root { color: #3b2017; background: #fffaf3; font-family: 'DM Sans', sans-serif; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, .font-display { font-family: 'Playfair Display', Georgia, serif; }
+  ::selection { background: #f2b8ae; color: #3b2017; }
+}
+
+@layer components {
+  .eyebrow { @apply text-xs font-bold uppercase tracking-[0.2em]; }
+  .nav-link { @apply transition-colors hover:text-[#b85f57]; }
+}
+
+.hero-grid { background-color: #fffaf3; background-image: linear-gradient(rgba(59,32,23,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(59,32,23,.045) 1px, transparent 1px); background-size: 56px 56px; }
+.hero-photo { object-position: center; }
+.reveal { animation: rise-in .8s cubic-bezier(.2,.7,.2,1) both; }
+.reveal-delay { animation-delay: .15s; }
+[data-reveal] { animation: rise-in .8s cubic-bezier(.2,.7,.2,1) both; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
